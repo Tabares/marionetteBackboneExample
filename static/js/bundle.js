@@ -51,9 +51,27 @@
 	  template: __webpack_require__(7)
 	});
 
+	var TodoList = Marionette.LayoutView.extend({
+	  el: '#app-hook',
+	  template: __webpack_require__(8)
+	});
+
 	var hello = new HelloWorld();
 
+	var todo = new TodoList({
+	  model: new Backbone.Model({
+	    items: [
+	      {assignee: 'Scott', text: 'Write a book about Marionette'},
+	      {assignee: 'Andrew', text: 'Do some codign'},
+	      {assignee: 'Emmanuel', text: 'Do magnificent apps'}
+
+	    ]
+	  })
+
+	});
+
 	hello.render();
+	todo.render();
 
 
 /***/ },
@@ -17549,6 +17567,28 @@
 	return __p;
 	};
 
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<ul>\r\n  ';
+	 _.each(items, function(item) { 
+	__p+='\r\n      <li>'+
+	((__t=( item.text ))==null?'':_.escape(__t))+
+	' &mdash; '+
+	((__t=( item.assignee ))==null?'':_.escape(__t))+
+	'\r\n  ';
+	 }) 
+	__p+='\r\n</ul>\r\n';
+	}
+	return __p;
+	};
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }
 /******/ ]);
