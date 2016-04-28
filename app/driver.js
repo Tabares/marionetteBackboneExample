@@ -41,7 +41,28 @@ var todoColl = new TodoListColl({
         {assignee: 'Emmanuel', text: 'Do magnificent apps'}
       ])
 });
+//Composite View
+var ToDoCom = Marionette.LayoutView.extend({
+  tagName: 'li',
+  template: require('./templates/collTodoLayout.html')
+});
+
+var TodoListCom = Marionette.CompositeView.extend({
+  el: '#app-hook-com',
+  template: require('./templates/todolist.html'),
+  childView: ToDoCom,
+  childViewContainer: 'ul'
+});
+
+var todoCom = new TodoListCom({
+  collection: new Backbone.Collection([
+    {assignee: 'Scott', text: 'Write a book about Marionette'},
+    {assignee: 'Andrew', text: 'Do some codign'},
+    {assignee: 'Emmanuel', text: 'Do magnificent apps'}
+  ])
+});
 
 hello.render();
 todo.render();
 todoColl.render();
+todoCom.render();

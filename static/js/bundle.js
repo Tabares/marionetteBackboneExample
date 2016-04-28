@@ -87,10 +87,31 @@
 	        {assignee: 'Emmanuel', text: 'Do magnificent apps'}
 	      ])
 	});
+	//Composite View
+	var ToDoCom = Marionette.LayoutView.extend({
+	  tagName: 'li',
+	  template: __webpack_require__(9)
+	});
+
+	var TodoListCom = Marionette.CompositeView.extend({
+	  el: '#app-hook-com',
+	  template: __webpack_require__(10),
+	  childView: ToDoCom,
+	  childViewContainer: 'ul'
+	});
+
+	var todoCom = new TodoListCom({
+	  collection: new Backbone.Collection([
+	    {assignee: 'Scott', text: 'Write a book about Marionette'},
+	    {assignee: 'Andrew', text: 'Do some codign'},
+	    {assignee: 'Emmanuel', text: 'Do magnificent apps'}
+	  ])
+	});
 
 	hello.render();
 	todo.render();
 	todoColl.render();
+	todoCom.render();
 
 
 /***/ },
@@ -17596,7 +17617,7 @@
 	with(obj||{}){
 	__p+='<ul>\r\n  ';
 	 _.each(items, function(item) { 
-	__p+='\r\n      <li>'+
+	__p+='\r\n    <li>'+
 	((__t=( item.text ))==null?'':_.escape(__t))+
 	' &mdash; '+
 	((__t=( item.assignee ))==null?'':_.escape(__t))+
@@ -17626,6 +17647,19 @@
 	};
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	module.exports = function(obj){
+	var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+	with(obj||{}){
+	__p+='<ul></ul>\n<form>\n  <label for="id_text">Todo Text</label>\n  <input type="text" name="text" id="id_text" />\n  <label for="id_assignee">Assign to</label>\n  <input type="text" name="assignee" id="id_assignee" />\n\n  <button id="btn-add">Add Item</button>\n</form>\n';
+	}
+	return __p;
+	};
+
 
 /***/ }
 /******/ ]);
